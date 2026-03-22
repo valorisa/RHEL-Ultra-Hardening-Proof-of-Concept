@@ -321,14 +321,13 @@ SELinux implémente un **MAC complet** basé sur le modèle FLASK/TE :
    (DoD, gouvernements) — niveaux `s0..s15`.
 
 ```text
-Root Linux classique :          Root sous SELinux strict :
-┌──────────────────────┐        ┌──────────────────────────────────┐
-│ root = TOUT          │        │ root (sysadm_t:s0)               │
-│ - /etc/shadow ✓      │        │ - /etc/shadow : AVC denied ✓     │
-│ - /proc/kcore  ✓     │        │ - /proc/kcore : AVC denied ✓     │
-│ - Kernel modules ✓   │        │ - insmod : AVC denied (si policy)│
-│ - Réseau arbitraire ✓│        │ - bind(0.0.0.0:443) : AVC denied │
-└──────────────────────┘        └──────────────────────────────────┘
+| Root Linux classique          | Root sous SELinux strict (sysadm_t:s0)  |
+| ----------------------------- | --------------------------------------- |
+| `root = TOUT`                 | `root (sysadm_t:s0)`                    |
+| `/etc/shadow`        ✅       | `/etc/shadow` : **AVC denied** ✅      |
+| `/proc/kcore`        ✅       | `/proc/kcore` : **AVC denied** ✅      |
+| `Kernel modules`     ✅       | `insmod`      : **AVC denied** ✅      |
+| `Réseau arbitraire`  ✅       | `bind(0.0.0.0:443)` : **AVC denied** ✅|
 ```
 
 | Contrôle | DAC seul (OpenBSD 2010) | MAC SELinux (RHEL 10.1) |
