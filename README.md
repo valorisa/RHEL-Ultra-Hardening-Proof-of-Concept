@@ -55,7 +55,7 @@ atteignant un niveau de sécurité objectivement supérieur à celui décrit dan
 
 ---
 
-## 2. § Intro — "Not designed with security in mind"
+## 2. Intro — "Not designed with security in mind"
 
 ### Citation de l'article
 
