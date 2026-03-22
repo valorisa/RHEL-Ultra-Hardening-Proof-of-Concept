@@ -1,7 +1,7 @@
 # 🔴 RHEL 10.1 Ultra-Hardening — Proof of Concept
 
 > **Réfutation technique et argumentée de _"The Insecurity of OpenBSD"_ (2010)**  
-> Par **Valorisa** — DevSecOps Sénior · Ingénieur Software · Full-Stack Developer
+> Par **valorisa** — DevSecOps Sénior · Ingénieur Software · Full-Stack Developer
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![RHEL 10.1](https://img.shields.io/badge/RHEL-10.1-red.svg)](https://www.redhat.com)
@@ -37,11 +37,11 @@ affirmait que OpenBSD, malgré sa réputation, souffrait de lacunes architectura
 L'auteur concluait que **Linux**, grâce à SELinux, RSBAC et ses mécanismes de contrôle d'accès obligatoire, représentait
 la seule plateforme faisant de **réels progrès** en sécurité système.
 
-Ce dépôt, maintenu par **Valorisa**, est une **réfutation technique point-par-point** de cet article,
+Ce dépôt, maintenu par **valorisa**, est une **réfutation technique point-par-point** de cet article,
 _et simultanément_, une **démonstration pratique** qu'on peut construire un système Linux (RHEL 10.1)
 atteignant un niveau de sécurité objectivement supérieur à celui décrit dans l'article.
 
-> **Positionnement :** Valorisa ne défend pas OpenBSD — elle démontre que RHEL 10.1,
+> **Positionnement :** valorisa ne défend pas OpenBSD — elle démontre que RHEL 10.1,
 > avec une configuration rigoureuse, répond à chaque critique de l'article et va au-delà.
 
 ### Ce que contient ce dépôt
@@ -68,7 +68,7 @@ L'auteur oppose "correctness" (correction du code) à "security" (sécurité sys
 suggérant que OpenBSD confond les deux. C'est une distinction réelle : un système
 _correct_ évite les bugs ; un système _sécurisé_ limite l'impact des bugs inévitables.
 
-### Réponse Valorisa — RHEL 10.1 + SELinux FLASK
+### Réponse valorisa — RHEL 10.1 + SELinux FLASK
 
 RHEL 10.1 est architecturé autour du modèle **FLASK** (Flux Advanced Security Kernel),
 développé par la NSA et intégré au kernel Linux sous forme de **SELinux** dès 2000.
@@ -118,7 +118,7 @@ ne mesure pas la sécurité globale. Un attaquant qui obtient un accès
 local non privilégié peut escalader ses privilèges si aucun MAC n'est présent.
 La métrique "nombre de CVE distants" est **nécessaire mais non suffisante**.
 
-### Réponse Valorisa — CIS Benchmark Level 1 + Attack Surface Reduction
+### Réponse valorisa — CIS Benchmark Level 1 + Attack Surface Reduction
 
 RHEL 10.1 applique par défaut (et notre script renforce) :
 
@@ -127,7 +127,7 @@ RHEL 10.1 applique par défaut (et notre script renforce) :
 3. **Résilience post-compromission** via SELinux (un process compromis reste confiné)
 4. **FIPS 140-3** pour toutes les primitives cryptographiques
 
-| Métrique | OpenBSD (vision article) | RHEL 10.1 Valorisa |
+| Métrique | OpenBSD (vision article) | RHEL 10.1 valorisa |
 |---|---|---|
 | Trous distants par défaut | "Deux" (affiché comme succès) | Surface réduite par nftables DROP |
 | Escalade locale | Non adressée | SELinux strict + NoNewPrivileges |
@@ -169,7 +169,7 @@ la source de dizaines de CVE critiques entre 1988 et 2010.
 L'article reproche à OpenBSD d'inclure ces démons dans l'installation de base
 sans suffisamment les restreindre.
 
-### Réponse Valorisa — Postfix + dnsmasq + chroot explicite
+### Réponse valorisa — Postfix + dnsmasq + chroot explicite
 
 Notre approche :
 
@@ -180,7 +180,7 @@ Notre approche :
 3. **Chroot applicatif explicite** : Postfix et dnsmasq opèrent dans des
    namespaces systemd (`PrivateTmp`, `ProtectSystem=strict`).
 
-| Service | OpenBSD base (2010) | RHEL 10.1 Valorisa |
+| Service | OpenBSD base (2010) | RHEL 10.1 valorisa |
 |---|---|---|
 | MTA | sendmail (CVE historiques) | Postfix (chroot interne, moindre privilège) |
 | DNS | BIND (surface large) | dnsmasq (résolveur minimal, DNSSEC) |
@@ -224,7 +224,7 @@ L'auteur identifie trois mécanismes OpenBSD et les trouve insuffisants :
 - `systrace` : retiré d'OpenBSD en 2011 (preuve que l'auteur avait raison)
 - `securelevels` : protection kernel limitée à l'immutabilité des flags
 
-### Réponse Valorisa — svirt MCS + seccomp + namespaces Linux
+### Réponse valorisa — svirt MCS + seccomp + namespaces Linux
 
 Linux offre une pile de confinement multi-couche sans équivalent :
 ```
@@ -294,7 +294,7 @@ C'est la critique la plus fondamentalement correcte de tout l'article.
 DAC (Discretionary Access Control) signifie que le _propriétaire_ d'une ressource
 décide qui y accède. Root bypasse tout DAC. Sans MAC, root = omnipotence.
 
-### Réponse Valorisa — SELinux Strict + RBAC + MCS
+### Réponse valorisa — SELinux Strict + RBAC + MCS
 
 SELinux implémente un **MAC complet** basé sur le modèle FLASK/TE :
 
@@ -369,7 +369,7 @@ L'auteur salue SELinux et RSBAC comme exemples de rigueur formelle —
 contrastant avec l'approche OpenBSD qu'il juge empirique et non formalisée.
 Cette section est la moins critique de OpenBSD et la plus favorable à Linux.
 
-### Réponse Valorisa — SELinux TE + setools + setroubleshoot
+### Réponse valorisa — SELinux TE + setools + setroubleshoot
 
 Le modèle FLASK/TE de SELinux repose sur des travaux académiques formels :
 - _"The Flask Security Architecture"_ (Spencer et al., USENIX Security 1999)
@@ -434,7 +434,7 @@ La métaphore _"fortress built upon sand"_ est rhétoriquement forte mais
 techniquement imprécise en ce qui concerne OpenBSD. En revanche,
 l'affirmation que Linux, avec MAC, fait des progrès _mesurables_ est défendable.
 
-### Réponse Valorisa — RHEL 10.1 : la forteresse sur le roc
+### Réponse valorisa — RHEL 10.1 : la forteresse sur le roc
 
 Notre démonstration est simple :
 un RHEL 10.1 correctement configuré répond à **chacune** des critiques de l'article,
@@ -455,7 +455,7 @@ avec des mécanismes formellement vérifiables, certifiés et maintenus industri
 ## 9. Architecture globale
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│                    RHEL 10.1 — Valorisa                         │
+│                    RHEL 10.1 — valorisa                         │
 │                                                                 │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────┐     │
 │  │ Cockpit  │  │  sshd    │  │ Postfix  │  │   httpd      │     │
@@ -582,7 +582,7 @@ https://VOTRE_IP:9090
 
 ### OpenBSD 2010 vs RHEL 10.1 — Vision globale
 
-| Critère | OpenBSD (2010, vision article) | RHEL 10.1 Valorisa | Verdict |
+| Critère | OpenBSD (2010, vision article) | RHEL 10.1 valorisa | Verdict |
 |---|---|---|---|
 | Modèle de contrôle | DAC (UNIX permissions) | MAC (SELinux TE/MCS/MLS) | RHEL ✔ |
 | Confinement post-root | Non (game over) | Oui (SELinux strict) | RHEL ✔ |
@@ -625,12 +625,12 @@ https://VOTRE_IP:9090
 
 ## Auteur
 
-**Valorisa** — DevSecOps Sénior · Ingénieur Software · Full-Stack Developer  
+**valorisa** — DevSecOps Sénior · Ingénieur Software · Full-Stack Developer  
 GitHub : [@valorisa](https://github.com/valorisa)
 
 > _"La sécurité n'est pas un état binaire. C'est une propriété émergente
 > d'une architecture en couches, formellement vérifiable, continuellement auditée."_
-> — Valorisa
+> — valorisa
 
 ---
 
