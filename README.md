@@ -452,18 +452,18 @@ avec des mécanismes formellement vérifiables, certifiés et maintenus industri
 ---
 
 ## 9. Architecture globale
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    RHEL 10.1 — Valorisa                         │
 │                                                                 │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────┐   │
-│  │ Cockpit  │  │  sshd    │  │ Postfix  │  │   httpd      │   │
-│  │:9090/TLS │  │ Ed25519  │  │loopback  │  │  httpd_t     │   │
-│  │cockpit_t │  │ sshd_t   │  │postfix_t │  │  + svirt     │   │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────────┘   │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────┐     │
+│  │ Cockpit  │  │  sshd    │  │ Postfix  │  │   httpd      │     │
+│  │:9090/TLS │  │ Ed25519  │  │loopback  │  │  httpd_t     │     │
+│  │cockpit_t │  │ sshd_t   │  │postfix_t │  │  + svirt     │     │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────────┘     │
 │       │              │              │               │           │
-│  ─────┴──────────────┴──────────────┴───────────────┴──────    │
-│                    SELinux Type Enforcement                      │
+│  ─────┴──────────────┴──────────────┴───────────────┴──────     │
+│                    SELinux Type Enforcement                     │
 │  ─────────────────────────────────────────────────────────────  │
 │                  seccomp BPF (par service)                      │
 │  ─────────────────────────────────────────────────────────────  │
