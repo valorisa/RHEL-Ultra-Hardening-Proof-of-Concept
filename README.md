@@ -310,13 +310,14 @@ SELinux implémente un **MAC complet** basé sur le modèle FLASK/TE :
 
 4. **MLS (Multi-Level Security)** : disponible pour les environnements classifiés
    (DoD, gouvernements) — niveaux `s0..s15`.
-```
+
+```text
 Root Linux classique :          Root sous SELinux strict :
 ┌──────────────────────┐        ┌──────────────────────────────────┐
 │ root = TOUT          │        │ root (sysadm_t:s0)               │
-│ - /etc/shadow ✓      │        │ - /etc/shadow : AVC denied ✓     │
-│ - /proc/kcore  ✓     │        │ - /proc/kcore : AVC denied ✓     │
-│ - Kernel modules ✓   │        │ - insmod : AVC denied (si policy) │
+│ - /etc/shadow ✓      │        │ - /etc/shadow : AVC denied ✓    │
+│ - /proc/kcore  ✓     │        │ - /proc/kcore : AVC denied ✓    │
+│ - Kernel modules ✓   │        │ - insmod : AVC denied (si policy)│
 │ - Réseau arbitraire ✓│        │ - bind(0.0.0.0:443) : AVC denied │
 └──────────────────────┘        └──────────────────────────────────┘
 ```
