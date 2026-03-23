@@ -435,13 +435,13 @@ et de conformité gouvernementale intégrés.
 
 ## 8. § Conclusion — "Linux the only real progress"
 
-### Citation de l'article
+### Citation de l'article n°7
 
 > _"Linux is the only real project making progress in operating system security,
 > despite its origins and despite NDAs. The fortress built upon sand that is
 > OpenBSD cannot compete with a properly secured Linux system."_
 
-### Analyse critique
+### Analyse critique n°7
 
 La métaphore _"fortress built upon sand"_ est rhétoriquement forte mais
 techniquement imprécise en ce qui concerne OpenBSD. En revanche,
@@ -653,5 +653,5 @@ GitHub : [@valorisa](https://github.com/valorisa)
 
 ---
 
-_Licence MIT — Voir [LICENSE](LICENSE)*  
-_Testé sur RHEL 10.1 et Oracle Linux 9.5*
+*Licence MIT — Voir [LICENSE](LICENSE)*  
+**Testé sur RHEL 10.1 et Oracle Linux 9.5**
